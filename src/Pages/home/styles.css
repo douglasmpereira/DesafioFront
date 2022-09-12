@@ -1,0 +1,34 @@
+/* 
+.header{
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(85, 202, 221, 1) 0%, rgba(31, 138, 182, 1) 28%, rgba(11, 150, 186, 1) 60%, rgba(55, 86, 175, 1) 89%);
+    
+}   
+.photo{
+    border-radius: 5%;
+}
+
+.iconeloja{
+    color: lightcyan;
+}
+.iconeloja:hover{
+    color: black
+}
+.login{
+    color: lightcyan;
+    border-color: lightcyan;
+    font-weight: 200;
+    line-height: 0.8;
+}
+.login:hover{
+    color: black;
+    background-color: lightcyan; 
+    border: black; 
+}
+.navbar-light .navbar-nav .nav-link {
+    color: lightcyan;
+}
+.titulo{
+    background: radial-gradient(circle, rgba(2, 0, 36, 1) 0%, rgba(85, 202, 221, 1) 0%, rgba(31, 138, 182, 1) 28%, rgba(11, 150, 186, 1) 60%, rgba(55, 86, 175, 1) 89%);
+    border-radius: 20px;
+
+} */
