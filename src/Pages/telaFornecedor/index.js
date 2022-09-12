@@ -21,7 +21,6 @@ const TelaFornecedores = () =>{
         <>
         <Header/>
         <Fornecedores/>
-
         </>
     )
 }

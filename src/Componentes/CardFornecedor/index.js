@@ -1,7 +1,7 @@
 import "./styles.css"
-const CardFornecedor = ({ fornecedor}) => {
+const CardFornecedor = ({ fornecedor, editarFornecedor, excluirFornecedor}) => {
   
-  // , editarFornecedor, excluirFornecedor
+  // , 
 
     return (
       <div className="container contCardForn">
@@ -42,18 +42,18 @@ const CardFornecedor = ({ fornecedor}) => {
                 </div>
   
                 <div className="d-flex justify-content-end">
-                  {/* <button
+                  <button
                     className="btn btn-sm btn-primary"
-                    onClick={() => editarProduto(produto)}
+                    onClick={() => editarFornecedor(fornecedor)}
                   >
                     <div className="d-flex align-items-center">Editar</div>
                   </button>
                   <button
                     className="btn btn-sm btn-danger ms-1"
-                    onClick={() => excluirProduto(produto.idProduto)}
+                    onClick={() => excluirFornecedor(fornecedor.id)}
                   >
                     <div className="d-flex align-items-center">Excluir</div>
-                  </button> */}
+                  </button>
                 </div>
               </div>
             </div>

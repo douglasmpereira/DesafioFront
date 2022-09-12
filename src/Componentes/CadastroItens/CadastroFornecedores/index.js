@@ -58,17 +58,17 @@ const CadastrarFornecedores = ({
           <div className="col-md-1">
             <label className="form-label">DDD</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               placeholder="Ex: 22"
-              value={telefone.telefone}
-              onChange={(e) => setTelefone({ telefone: e.target.value })}
+              value={telefone.ddd}
+              onChange={(e) => setTelefone({ ddd: e.target.value })}
             />
           </div>
           <div className="col-md-2">
             <label className="form-label">Telefone</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               placeholder="Ex: 25222525"
               value={telefone.telefone}
@@ -78,7 +78,7 @@ const CadastrarFornecedores = ({
           <div className="col-md-3">
             <label className="form-label">Cidade</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               placeholder="Ex: Nova Friburgo"
               value={cidade}
@@ -88,7 +88,7 @@ const CadastrarFornecedores = ({
           <div className="col-md-3">
             <label className="form-label">Bairro</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               placeholder="Ex: Perissê"
               value={bairro}
@@ -98,7 +98,7 @@ const CadastrarFornecedores = ({
           <div className="col-md-4">
             <label className="form-label">Endereço</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
               placeholder="Ex: Rua São José"
               value={endereco}
@@ -116,9 +116,7 @@ const CadastrarFornecedores = ({
             />
           </div>
           
-          
-  
-          {/* {editando.edit ? (
+          {editando.edit ? (
             <div className="col-12 mt-4 mb-4">
               <button
                 type="button"
@@ -141,7 +139,7 @@ const CadastrarFornecedores = ({
                 <div className="d-flex align-items-center">Adicionar</div>
               </button>
             </div>
-          )} */}
+          )}
         </form>
         <h4 className="subtitulo2">Fornecedores cadastrados no seu sistema!</h4>
       </div>
