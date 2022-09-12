@@ -30,7 +30,7 @@ const CadastrarFornecedores = ({
             <input
               type="text"
               className="form-control"
-              placeholder="Ex: Iphone X"
+              placeholder="Ex: Eletronicos L.T.D.A"
               value={nome}
               onChange={(e) => setNome(e.target.value)}
             />
@@ -40,7 +40,7 @@ const CadastrarFornecedores = ({
             <input
               type="text"
               className="form-control"
-              placeholder="Ex: 126GB"
+              placeholder="Ex: Eletronicos e prod. gamers"
               value={descricao}
               onChange={(e) => setDescricao(e.target.value)}
             />
@@ -48,19 +48,29 @@ const CadastrarFornecedores = ({
           <div className="col-md-3">
             <label className="form-label">Email</label>
             <input
-              type="number"
+              type="text"
               className="form-control"
-              placeholder="Ex: 25"
+              placeholder="Ex: eletronicos@gmail.com"
               value={email.nomeEmail}
               onChange={(e) => setEmail({ nomeEmail: e.target.value })}
             />
           </div>
-          <div className="col-md-3">
+          <div className="col-md-1">
+            <label className="form-label">DDD</label>
+            <input
+              type="number"
+              className="form-control"
+              placeholder="Ex: 22"
+              value={telefone.telefone}
+              onChange={(e) => setTelefone({ telefone: e.target.value })}
+            />
+          </div>
+          <div className="col-md-2">
             <label className="form-label">Telefone</label>
             <input
               type="number"
               className="form-control"
-              placeholder="Ex: 25"
+              placeholder="Ex: 25222525"
               value={telefone.telefone}
               onChange={(e) => setTelefone({ telefone: e.target.value })}
             />
@@ -70,7 +80,7 @@ const CadastrarFornecedores = ({
             <input
               type="number"
               className="form-control"
-              placeholder="Ex: R$ 3000"
+              placeholder="Ex: Nova Friburgo"
               value={cidade}
               onChange={(e) => setCidade(e.target.value)}
             />
@@ -80,7 +90,7 @@ const CadastrarFornecedores = ({
             <input
               type="number"
               className="form-control"
-              placeholder="Ex: 25"
+              placeholder="Ex: Perissê"
               value={bairro}
               onChange={(e) => setBairro(e.target.value)}
             />
@@ -90,13 +100,11 @@ const CadastrarFornecedores = ({
             <input
               type="number"
               className="form-control"
-              placeholder="Ex: R$ 6000"
+              placeholder="Ex: Rua São José"
               value={endereco}
               onChange={(e) => setEndereco(e.target.value)}
             />
           </div>
-  
-          
           <div className="col-md-2">
             <label className="form-label">Numero</label>
             <input
@@ -135,7 +143,7 @@ const CadastrarFornecedores = ({
             </div>
           )} */}
         </form>
-        <h4 className="subtitulo2">Produtos cadastrados no seu sistema!</h4>
+        <h4 className="subtitulo2">Fornecedores cadastrados no seu sistema!</h4>
       </div>
     );
   };
