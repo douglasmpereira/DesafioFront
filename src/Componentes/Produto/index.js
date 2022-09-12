@@ -19,8 +19,7 @@ const Produto = () => {
 
     useEffect(() => {
         if (!tasks) return
-        setProdutos(tasks)
-       // setIdProduto(tasks.length)
+        setProdutos(tasks)  
     }, [tasks])
 
     const adicionarProduto = async () => {

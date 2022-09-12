@@ -4,7 +4,7 @@ import headset from "../../imagens/headset.PNG"
 
 function CardItem() {
   return (
-    <Card style={{ width: '13rem' }}>
+    <Card style={{ width: '11rem', borderRadius: '15px', boxShadow: '10px 10px 5px #0f7ae6'  }}>
       <Card.Img variant="top" src={headset} />
       <Card.Body>
         <Card.Title>HeadSet</Card.Title>

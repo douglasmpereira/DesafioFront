@@ -43,16 +43,16 @@ const TelaAcesso = () =>{
         <div className="container ">
             <div className="row rowNav">
                 <div className="col-md-3 ">
-                    <CardAcessos imagem={entrarProdutos} nome="Produtos" />
+                    <CardAcessos imagem={entrarProdutos} nome="Produtos" link="/user" />
                 </div>
                 <div className="col-md-3 ">
-                    <CardAcessos imagem={entrarPedidos} nome="Pedidos" />
+                    <CardAcessos imagem={entrarPedidos} nome="Pedidos" link="/pedidos" />
                 </div>
                 <div className="col-md-3">
-                    <CardAcessos imagem={entrarFornecedores} nome="Fornecedores" />
+                    <CardAcessos imagem={entrarFornecedores} nome="Fornecedores" link="/fornecedores" />
                 </div>
                 <div className="col-md-3">
-                    <CardAcessos imagem={entrarTransportadora} nome="Transportadora" />
+                    <CardAcessos imagem={entrarTransportadora} nome="Transportadora" link="/transportadoras" />
                 </div>
             </div>
             
