@@ -1,3 +1,4 @@
+import ModalItensPedidos from "../modais/modalPedidoItem"
 const CardPedidos = ({pedido, excluirPedido}) => {
     return (
         <div className="container contCardForn">
@@ -38,12 +39,8 @@ const CardPedidos = ({pedido, excluirPedido}) => {
                 </div>
   
                 <div className="d-flex justify-content-end">
-                  {/* <button
-                    className="btn btn-sm btn-primary"
-                    onClick={() => editarFornecedor(fornecedor)}
-                  >
-                    <div className="d-flex align-items-center">Editar</div>
-                  </button> */}
+                  
+                  <ModalItensPedidos pedido={pedido}/>
                   <button
                     className="btn btn-sm btn-danger ms-1"
                     onClick={() => excluirPedido(pedido.id)}
