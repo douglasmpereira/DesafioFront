@@ -1,5 +1,11 @@
-import ModalItensPedidos from "../modais/modalPedidoItem"
-const CardPedidos = ({pedido, excluirPedido}) => {
+import ModalItensPedidos from "../modais/modalPedidoItem";
+import { Button } from "react-bootstrap";
+
+const CardPedidos = ({pedido, excluirPedido, pedidosItens}) => {
+
+    function funcao () {
+      <ModalItensPedidos />
+  }
     return (
         <div className="container contCardForn">
         <div className="card col-12 mb-2 mt-4">
@@ -39,7 +45,6 @@ const CardPedidos = ({pedido, excluirPedido}) => {
                 </div>
   
                 <div className="d-flex justify-content-end">
-                  
                   <ModalItensPedidos pedido={pedido}/>
                   <button
                     className="btn btn-sm btn-danger ms-1"

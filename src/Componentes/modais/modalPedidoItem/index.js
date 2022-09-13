@@ -1,21 +1,38 @@
 import React, { useState, useEffect } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import useAxiosGet from '../../hooks/useAxiosGet';
 
 const ModalItensPedidos = ({pedido}) => {
 
     const [pedidosItens, setPedidosItens] = useState([])
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+    const { tasks } = useAxiosGet('/pedidosItens')
+
+    
+
+    useEffect( () => {
+    if(!show){
+        console.log("chegou no modal")
+      if (!tasks) return 
+      setPedidosItens(tasks) 
+      console.log("tasks:",tasks)
+      console.log("fez a requisição") 
+    }
+  }, [tasks])
 
     const handleShow = () => {
-        setShow(true);
-        const idUser = localStorage.getItem("id_user")          
-            //   getByIdUsuario(idUser).then((response)=>{
-            //   setUser(response)
-            //   })      
-
+        setShow(true);  
+        console.log(pedidosItensFiltrados)   
+        console.log(pedido.id) 
       }
+
+    
+    const pedidosItensFiltrados = pedidosItens.filter(
+        
+        (filtrados) => filtrados.pedido.id === pedido.id   
+    );
 
     return (
 
@@ -45,15 +62,17 @@ const ModalItensPedidos = ({pedido}) => {
                         <th className="text-center">Subtotal</th>
                       </tr>
                     </thead>
-                    <tbody>
-                      {/* <tr>
-                        <td className="text-center">{produto.url}</td>
-                        <td className="text-center">{produto.nome} </td>
-                        <td className="text-center"> {produto.precoUnit}</td>
-                        <td className="text-center"> {quantidade} </td>
-                        <td className="text-center"> {valor} </td>
-                      </tr> */}
+                {pedidosItensFiltrados.map((item) => (
+                    <tbody key={item.id}>
+                      <tr>
+                        <td className="text-center">{item.produto.url}</td>
+                        <td className="text-center">{item.produto.nome} </td>
+                        <td className="text-center"> {item.produto.precoUnit}</td>
+                        <td className="text-center"> {item.quantidade} </td>
+                        <td className="text-center"> {item.subTotal} </td>
+                      </tr>
                     </tbody>
+                    ))}
                   </table>
                 </div>
           </Modal.Body>

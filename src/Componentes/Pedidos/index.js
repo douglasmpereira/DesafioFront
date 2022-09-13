@@ -13,8 +13,9 @@ const Pedidos = () => {
 
     useEffect( () => {
         if (!tasks) return 
-        setPedidos(tasks)  
+        setPedidos(tasks) 
     }, [tasks])
+
 
     const excluirPedido = async (id) => {
         const pedidosFiltrados = pedidos.filter(pedido => pedido.id !== id)
