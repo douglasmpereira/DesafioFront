@@ -65,7 +65,7 @@ const Fornecedores = () =>{
         
         setNome("")
         setDescricao("")
-        setEmail({"email": ""})
+        setEmail({"nomeEmail": ""})
         setTelefone({"ddd": "", "telefone":""})
         setCidade("")
         setBairro("")
@@ -93,7 +93,7 @@ const Fornecedores = () =>{
         const { data: fornecedorExcluido } = await api.delete(`/fornecedores/${id}`)
     }
     const cancelar = () => {
-        setEditando({ edit: false, idProduto: null })
+        setEditando({ edit: false, id: null })
         setNome("")
         setDescricao("")
         setEmail({"nomeEmail": ""})
@@ -165,9 +165,8 @@ const Fornecedores = () =>{
         setNumero={setNumero} email={email} setEmail={setEmail} telefone={telefone} setTelefone={setTelefone}
         editar={editarFornecedor} adicionarFornecedor={adicionarFornecedor} salvar={salvar} cancelar={cancelar} editando={editando}/>
       
-         {fornecedores.map((fornecedor) => <CardFornecedor key={fornecedor.id} fornecedor={fornecedor} editarFornecedor={editarFornecedor} excluirFornecedor={excluirFornecedor} />)} 
-        
-
+         {fornecedores.map((fornecedor) => <CardFornecedor key={fornecedor.id} fornecedor={fornecedor}
+          editarFornecedor={editarFornecedor} excluirFornecedor={excluirFornecedor} />)} 
         
         
         </>

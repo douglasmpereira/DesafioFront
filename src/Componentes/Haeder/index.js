@@ -22,10 +22,11 @@ const Header = () => {
           <Nav className="me-auto ">
             <Nav.Link href="/home">Home</Nav.Link>
           </Nav>
-          <label className="bem-vindo me-2" htmlFor="">
-            Bem vindo(a) novamente, {usuario.nome}
+          <label className="bem-vindo me-2">
+            Bem vindo(a) novamente
+             {/* {usuario.nome} */}
           </label>
-          <FcBusinesswoman className="me-3" size={25} />
+          {/* <FcBusinesswoman className="me-3" size={25} /> */}
           <Nav.Link
             className="login btn  btn-outline-primary me-3"
             href="/login"

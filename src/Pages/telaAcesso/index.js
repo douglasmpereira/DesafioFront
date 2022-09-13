@@ -10,6 +10,7 @@ import entrarProdutos from "../../imagens/entrarProdutos.PNG"
 import entrarPedidos from "../../imagens/entrarPedidos.PNG"
 import entrarFornecedores from "../../imagens/entrarFornecedores.PNG"
 import entrarTransportadora from "../../imagens/entrarTransportadora.PNG"
+import Header from "../../Componentes/Haeder";
 
 const TelaAcesso = () =>{
 
@@ -20,26 +21,7 @@ const TelaAcesso = () =>{
 
     return(
         <>
-         <div className="header">
-        <Navbar className="navbar ms-3">
-          <Navbar.Brand href="/home">
-            <FaStore className="iconeloja" size={30} />
-          </Navbar.Brand>
-          <Nav className="me-auto ">
-            <Nav.Link href="/home">Home</Nav.Link>
-          </Nav>
-          <label className="bem-vindo me-2" htmlFor="">
-            Bem vindo(a) novamente, {usuario.nome}
-          </label>
-          <FcBusinesswoman className="me-3" size={25} />
-          <Nav.Link
-            className="login btn  btn-outline-primary me-3"
-            href="/login"
-          >
-            Logout{" "}
-          </Nav.Link>
-        </Navbar>
-      </div>
+         <Header/>
         <div className="container ">
             <div className="row rowNav">
                 <div className="col-md-3 ">
