@@ -28,10 +28,7 @@ const Fornecedores = () =>{
     const [editando, setEditando] = useState({ edit: false, id: null })
 
     useEffect( () => {
-        console.log("bateu aqui")
-        if (!tasks) return 
-        console.log(tasks)
-        console.log("bateu aqui2")
+           if (!tasks) return 
         setFornecedores(tasks)  
     }, [tasks])
 
