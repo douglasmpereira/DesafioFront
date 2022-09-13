@@ -96,7 +96,7 @@ const Fornecedores = () =>{
         setEditando({ edit: false, idProduto: null })
         setNome("")
         setDescricao("")
-        setEmail({"email": ""})
+        setEmail({"nomeEmail": ""})
         setTelefone({"ddd": "", "telefone":""})
         setCidade("")
         setBairro("")

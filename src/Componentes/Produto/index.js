@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import api from '../service/api';
 import useAxiosGet from '../hooks/useAxiosGet';
-import CadastrarProdutos from '../CadastrarProduto';
+import CadastrarProdutos from '../CadastroItens/CadastrarProduto';
 import Card from '../Card';
 
 
