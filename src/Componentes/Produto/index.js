@@ -3,19 +3,22 @@ import api from '../service/api';
 import useAxiosGet from '../hooks/useAxiosGet';
 import CadastrarProdutos from '../CadastroItens/CadastrarProduto';
 import Card from '../Card';
+import { RiLogoutBoxFill } from "react-icons/ri";   
+import { Link } from "react-router-dom";
+import Loading from "../Loading";
 
 
 const Produto = () => {
-    const [nomeProduto, setNomeProduto] = useState("")
-    const [custo, setCusto] = useState("")
-    const [precoUnitario, setPrecoUnitario] = useState("")
-    const [descricaoProduto, setDescricaoProduto] = useState("")
-    const [quantidadeEstoque, setQuantidadeEstoque] = useState("")
-    const [categoria, setCategoria] = useState({ "idCategoria": 0 })
-    const [idProduto, setIdProduto] = useState(0)
+    const [nome, setNome] = useState("")
+    const [url, setUrl] = useState("")
+    const [precoUnit, setPrecoUnit] = useState("")
+    const [descricao, setDescricao] = useState("")
+    const [qtdEstoque, setQtdEstoque] = useState("")
+    const [fornecedor, setFornecedor] = useState({"id": ""})
     const [editando, setEditando] = useState({ edit: false, id: null })
     const { tasks } = useAxiosGet('/produtos')
     const [produtos, setProdutos] = useState([])
+    const [carregando, setCarregando] = useState(true)
 
     useEffect(() => {
         if (!tasks) return
@@ -24,84 +27,87 @@ const Produto = () => {
     }, [tasks])
 
     const adicionarProduto = async () => {
-        if (nomeProduto === "" || custo === "" || precoUnitario === "" ||
-            descricaoProduto === "" || quantidadeEstoque === "" || categoria === null) {
+        if (nome === "" || precoUnit === "" || descricao === "" ||
+         qtdEstoque === "" || url === " " || fornecedor ===" " ) {
             return alert("PREENCHA TODOS OS CAMPOS")
         }
 
         const novoProduto = {
 
-            nomeProduto: nomeProduto,
-            custo: custo,
-            precoUnitario: precoUnitario,
-            descricaoProduto: descricaoProduto,
-            quantidadeEstoque: quantidadeEstoque,
-            categoria: categoria
+            nome: nome,
+            url: url,
+            precoUnit: precoUnit,
+            descricao: descricao,
+            qtdEstoque: qtdEstoque,
+            fornecedor: fornecedor
 
         }
         alert("PRODUTO CADASTRADO COM SUCESSO!")
-        const { data } = await api.post('/produtos/adicionar', novoProduto)
+        const { data } = await api.post('/produtos', novoProduto)
 
         setProdutos([
             ...produtos,
             data
         ])
 
-        setIdProduto("")
-        setNomeProduto("")
-        setCusto("")
-        setPrecoUnitario("")
-        setDescricaoProduto("")
-        setQuantidadeEstoque("")
-        setCategoria({"idCategoria": 0  })
+        setNome("")
+        setUrl("")
+        setPrecoUnit("")
+        setDescricao("")
+        setQtdEstoque("")
+        setFornecedor({"id": ""  })
     }
 
     const editarProduto = (produto) => {
         setEditando({ edit: true, idProduto: produto.idProduto })
-        setNomeProduto(produto.nomeProduto)
-        setCusto(produto.custo)
-        setPrecoUnitario(produto.precoUnitario)
-        setDescricaoProduto(produto.descricaoProduto)
-        setQuantidadeEstoque(produto.quantidadeEstoque)
-        setCategoria(produto.categoria)
+        setNome(produto.nome)
+        setUrl(produto.url)
+        setPrecoUnit(produto.precoUnit)
+        setDescricao(produto.descricao)
+        setQtdEstoque(produto.qtdEstoque)
+        setFornecedor(produto.fornecedor)
     }
     
-    const excluirProduto = async (idProduto) => {
-        const produtosFiltrados = produtos.filter(produto => produto.idProduto !== idProduto)
+    const excluirProduto = async (id) => {
+        const produtosFiltrados = produtos.filter(produto => produto.id!== id)
         setProdutos(produtosFiltrados);
         alert("PRODUTO EXCLUÍDO COM SUCESSO!")
         console.log("problema de back end, culpa do pessoal que fez a api")
-        const { data: produtoExcluido } = await api.delete(`/produtos/${idProduto}`)
+        const { data: produtoExcluido } = await api.delete(`/produtos/${id}`)
     }
 
     const cancelar = () => {
         setEditando({ edit: false, idProduto: null })
-        setNomeProduto("")
-        setCusto("")
-        setPrecoUnitario("")
-        setDescricaoProduto("")
-        setQuantidadeEstoque("")
-        setCategoria({ "idCategoria": 0  })
+        setNome("")
+        setUrl("")
+        setPrecoUnit("")
+        setDescricao("")
+        setQtdEstoque("")
+        setFornecedor({"id": ""  })
     }
 
+    
+
+    
     const salvar = async () => {
         const produtoEditado = {
-            nomeProduto: nomeProduto,
-            custo: custo,
-            precoUnitario: precoUnitario,
-            descricaoProduto: descricaoProduto,
-            quantidadeEstoque: quantidadeEstoque,
-            categoria: categoria
+
+            nome: nome,
+            url: url,
+            precoUnit: precoUnit,
+            descricao: descricao,
+            qtdEstoque: qtdEstoque,
+            fornecedor: fornecedor
         }
 
-        const { data } = await api.put(`/produtos/${editando.idProduto}`, produtoEditado)
+        const { data } = await api.put(`/produtos/${editando.id}`, produtoEditado)
         //console.log( editando.idProduto)
         const produtoseditados = produtos.map(produto => {
-            console.log(produto.idProduto, data.idProduto)
-            if (produto.idProduto === editando.idProduto) {
+            console.log(produto.id, data.id)
+            if (produto.id === editando.id) {
                 
                 return {
-                    idProduto: produto.idProduto,
+                    id: produto.id,
                     ...produtoEditado
                 }
             }
@@ -110,25 +116,46 @@ const Produto = () => {
         
         console.log("depois de produtos editads")
         setProdutos(produtoseditados)
-        setEditando({ edit: false, idProduto: null })
-        setNomeProduto("")
-        setCusto("")
-        setPrecoUnitario("")
-        setDescricaoProduto("")
-        setQuantidadeEstoque("")
-        setCategoria({ "idCategoria": 0  })
+        setEditando({ edit: false, id: null })
+        setNome("")
+        setUrl("")
+        setPrecoUnit("")
+        setDescricao("")
+        setQtdEstoque("")
+        setFornecedor({"id": ""  })
 
     }
 
+    useEffect(() => {
+        if (produtos.length > 0) {
+            setCarregando(false);
+        }
+    }, [produtos])
+
     return (
         <div className="container">
-            <h1 className='titulo text-center'>GERENCIAMENTO DE PRODUTOS</h1>
+            
+            <h2 className="mt-3 text-center">PEDIDOS ENCONTRADOS NO SISTEMA</h2>
+            <div className="container text-end">
+                <div className="row">
+                    <div className="col">
+                        <Link to={"/telaAcesso"}>
+                        <button className="btnBack">
+                            <RiLogoutBoxFill/>
+                            Voltar
+                        </button>
+                        </Link>
+                    </div>
+                </div>
+            </div>
 
-            <CadastrarProdutos editar={editarProduto} adicionarProduto={adicionarProduto} salvar={salvar} cancelar={cancelar} nome={nomeProduto} setNome={setNomeProduto} custo={custo} setCusto={setCusto}
-                preco={precoUnitario} setPreco={setPrecoUnitario} descricao={descricaoProduto} setDescricao={setDescricaoProduto}
-                quantidade={quantidadeEstoque} setQuantidade={setQuantidadeEstoque} categoria={categoria} setCategoria={setCategoria} editando={editando} />
-
-            {produtos.map((produto) => <Card key={produto.idProduto} produto={produto} editarProduto={editarProduto} excluirProduto={excluirProduto} />)}
+                <CadastrarProdutos editar={editarProduto} adicionarProduto={adicionarProduto} salvar={salvar} cancelar={cancelar} 
+                nome={nome} setNome={setNome} url={url} setUrl={setUrl} precoUnit={precoUnit} setPrecoUnit={setPrecoUnit}  descricao={descricao} 
+                setDescricao={setDescricao} qtdEstoque={qtdEstoque} setQtdEstoque={setQtdEstoque} fornecedor={fornecedor}
+                setFornecedor={setFornecedor} editando={editando}/>
+             {carregando ? <> <Loading/> </> : <>
+                 {produtos.map((produto) => <Card key={produto.idProduto} produto={produto} editarProduto={editarProduto} excluirProduto={excluirProduto} />)}
+            </>}
         </div>
     );
 }

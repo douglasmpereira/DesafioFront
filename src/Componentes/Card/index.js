@@ -1,21 +1,17 @@
+import { useState } from "react";
+import { useEffect } from "react";
+import api from "../service/api";
+import useAxiosGet from "../hooks/useAxiosGet";
 
 const Card = ({ produto, editarProduto, excluirProduto }) => {
-  const handleCategoria = () => {
-    switch (produto.categoria.idCategoria) {
-      case 1:
-        return <>Smartphones</>;
-      case 2:
-        return <>Tablets</>;
-      case 3:
-        return <>Monitores</>;
-      case 4:
-        return <>Mouses</>;
-      case 5:
-        return <>Teclados</>;
-      default:
-        return "Sem Categoria";
-    }
-  };
+
+  const [fornecedor, setFornecedor] = useState("")
+  const { tasks } = useAxiosGet(`/produtos/${produto.fornecedor.id}`)
+
+  useEffect(() => {
+    if (!tasks) return
+    setFornecedor(tasks)
+}, [tasks])
 
   return (
     <div className="container">
@@ -24,7 +20,7 @@ const Card = ({ produto, editarProduto, excluirProduto }) => {
           <div className="card col-12 mb-2 ">
             <div className="card-header d-flex align-items-center mt-2">
               <p>
-                {produto.idProduto} - {produto.nomeProduto}
+                 Produto: {produto.nome} - Código: {produto.id}
               </p>
             </div>
 
@@ -34,26 +30,20 @@ const Card = ({ produto, editarProduto, excluirProduto }) => {
                 <table className="table">
                   <thead>
                     <tr>
-                      <th className="text-center">Categoria</th>
+                      <th className="text-center"></th>
                       <th className="text-center">Descrição</th>
-                      <th className="text-center">Custo</th>
-                      <th className="text-center">Preço</th>
-                      <th className="text-center">Quantidade</th>
+                      <th className="text-center">Fornecedor</th>
+                      <th className="text-center">Preço Unitário</th>
+                      <th className="text-center">Quantidade em Estoque</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="text-center">{handleCategoria()}</td>
-                      <td className="text-center">
-                        {produto.descricaoProduto}
-                      </td>
-                      <td className="text-center">R$ {produto.custo}</td>
-                      <td className="text-center">
-                        R$ {produto.precoUnitario}
-                      </td>
-                      <td className="text-center">
-                        {produto.quantidadeEstoque}
-                      </td>
+                    <td className="text-center"> <img src={produto.url} alt="imagem do produto" width="70px" /></td>
+                      <td className="text-center"> {produto.descricao} </td>
+                      <td className="text-center">{fornecedor.nome}</td>
+                      <td className="text-center">R$ {produto.precoUnit}</td>
+                      <td className="text-center"> {produto.qtdEstoque} </td>
                     </tr>
                   </tbody>
                 </table>
@@ -68,7 +58,7 @@ const Card = ({ produto, editarProduto, excluirProduto }) => {
                 </button>
                 <button
                   className="btn btn-sm btn-danger ms-1"
-                  onClick={() => excluirProduto(produto.idProduto)}
+                  onClick={() => excluirProduto(produto.id)}
                 >
                   <div className="d-flex align-items-center">Excluir</div>
                 </button>
