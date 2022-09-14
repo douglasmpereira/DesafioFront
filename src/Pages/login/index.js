@@ -20,8 +20,7 @@ const Login = () => {
 
   const handleEmail = (e) => {
     e.preventDefault();
-    console.log("submite", { login, senha });
-    logar(login, senha);
+      logar(login, senha);
 
     if (login === user.login && senha === user.senha) {
       localStorage.setItem("login", login);

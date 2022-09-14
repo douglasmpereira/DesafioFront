@@ -7,6 +7,7 @@ import TelaAcesso from "../Pages/telaAcesso";
 import TelaFornecedores from "../Pages/telaFornecedor";
 import TelaTransportadoras from "../Pages/telaTransportadoras";
 import TelaPedidos from "../Pages/telaPedido";
+import DetalhesPedido from "../Pages/DetalhesPedido";
 import { AuthContext } from "../../src/contexts/auth";
 //import ProtectedRoutes from "../ProtectedRoutes";
 
@@ -35,7 +36,7 @@ const Rotas = () => {
           <Route path="/fornecedores" element={<TelaFornecedores/>} />
           <Route path="/transportadoras" element={<TelaTransportadoras/>} />
           <Route path="/pedidos" element={<TelaPedidos/>} />
-
+          <Route path="/detalhesPedidos" element={<DetalhesPedido/>} />
           {usuario && <Route path="/user" element={<User />} />}
           <Route
             path="*"

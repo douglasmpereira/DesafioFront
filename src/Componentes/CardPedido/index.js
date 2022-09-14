@@ -1,11 +1,12 @@
 import ModalItensPedidos from "../modais/modalPedidoItem";
 import { Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const CardPedidos = ({pedido, excluirPedido, pedidosItens}) => {
 
-    function funcao () {
-      <ModalItensPedidos />
-  }
+    const pegarIdPedido = () =>{
+      localStorage.setItem("idPedido", pedido.id);
+    }
     return (
         <div className="container contCardForn">
         <div className="card col-12 mb-2 mt-4">
@@ -45,7 +46,15 @@ const CardPedidos = ({pedido, excluirPedido, pedidosItens}) => {
                 </div>
   
                 <div className="d-flex justify-content-end">
-                  <ModalItensPedidos pedido={pedido}/>
+                  {/* <ModalItensPedidos pedido={pedido}/> */}
+                  <Link to={"/detalhesPedidos"}>
+                  <button
+                    className="btn btn-sm btn-primary ms-1"
+                    onClick={() => pegarIdPedido()}
+                  >
+                    <div className="d-flex align-items-center">Itens</div>
+                  </button>
+                  </Link>
                   <button
                     className="btn btn-sm btn-danger ms-1"
                     onClick={() => excluirPedido(pedido.id)}
