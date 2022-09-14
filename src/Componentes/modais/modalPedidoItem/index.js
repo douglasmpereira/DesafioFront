@@ -27,10 +27,8 @@ const ModalItensPedidos = ({pedido}) => {
         console.log(pedidosItensFiltrados)   
         console.log(pedido.id) 
       }
-
     
-    const pedidosItensFiltrados = pedidosItens.filter(
-        
+    const pedidosItensFiltrados = pedidosItens.filter(    
         (filtrados) => filtrados.pedido.id === pedido.id   
     );
 
