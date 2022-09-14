@@ -6,6 +6,7 @@ import useAxiosGet from '../hooks/useAxiosGet';
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import CardTransportadora from "../CardTransportadora";
+import Loading from "../Loading";
 
 const Transportadoras = () => {
 
@@ -15,12 +16,19 @@ const Transportadoras = () => {
     const [transportadoras, setTransportadoras] = useState([])
     const { tasks } = useAxiosGet('/transportadoras')
     const [editando, setEditando] = useState({ edit: false, id: null })
+    const [carregando, setCarregando] = useState(true)
 
     useEffect( () => {
         
         if (!tasks) return 
         setTransportadoras(tasks)  
     }, [tasks])
+
+    useEffect(() => {
+        if (transportadoras.length > 0) {
+            setCarregando(false);
+        }
+    }, [transportadoras])
 
     const adicionarTransportadora = async () => {
         if (nome === "" || telefone=== "" || precoPorKm=== "" ) 
@@ -118,10 +126,10 @@ const Transportadoras = () => {
             <CadastrarTransportadoras nome={nome} setNome={setNome} telefone={telefone} setTelefone={setTelefone}
             precoPorKm={precoPorKm} setPrecoPorKm={setPrecoPorKm}  editar={editarTransportadora} 
             adicionarTransportadora={adicionarTransportadora} salvar={salvar} cancelar={cancelar} editando={editando}/>
-
-            {transportadoras.map((transportadora) => <CardTransportadora key={transportadora.id} transportadora={transportadora} 
-            editarTransportadora={editarTransportadora} excluirTransportadora={excluirTransportadora} />)}
-
+            {carregando ? <> <Loading/> </> : <>
+                {transportadoras.map((transportadora) => <CardTransportadora key={transportadora.id} transportadora={transportadora} 
+                editarTransportadora={editarTransportadora} excluirTransportadora={excluirTransportadora} />)}
+            </>}
 
         </>
     )

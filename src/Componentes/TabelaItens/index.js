@@ -1,9 +1,7 @@
-import { useState } from "react";
-import { useEffect } from "react";
+
 
 const TabelaItens = ({pedidosItens}) => {
-
-
+    
     return (
             <>
                 <div className="container">
@@ -18,6 +16,7 @@ const TabelaItens = ({pedidosItens}) => {
                         <th className="text-center">Subtotal</th>
                       </tr>
                     </thead>
+                
                 {pedidosItens.map((item) => (
                     <tbody key={item.id}>
                       <tr>

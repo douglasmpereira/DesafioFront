@@ -5,16 +5,25 @@ import api from '../service/api';
 import useAxiosGet from '../hooks/useAxiosGet';
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Loading from "../Loading";
 
 const Pedidos = () => {
 
     const [pedidos, setPedidos]    = useState([])
     const { tasks } = useAxiosGet('/pedidos')
+    const [carregando, setCarregando] = useState(true)
 
     useEffect( () => {
         if (!tasks) return 
         setPedidos(tasks) 
     }, [tasks])
+
+    useEffect(() => {
+        if (pedidos.length > 0) {
+            setCarregando(false);
+        }
+    }, [pedidos])
+    
 
 
     const excluirPedido = async (id) => {
@@ -40,9 +49,10 @@ const Pedidos = () => {
                 </div>
             </div>
         </div>
-
-        {pedidos.map((pedido) => <CardPedidos key={pedido.id} pedido={pedido} excluirPedido={excluirPedido} />)} 
-        </>
+        {carregando ? <> <Loading/> </> : <>
+            {pedidos.map((pedido) => <CardPedidos key={pedido.id} pedido={pedido} excluirPedido={excluirPedido} />)} 
+        </>}
+            </>
     )
 }
 export default Pedidos

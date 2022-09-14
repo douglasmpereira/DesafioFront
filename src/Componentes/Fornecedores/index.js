@@ -8,6 +8,7 @@ import useAxiosGet from '../hooks/useAxiosGet';
 import "./styles.css";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Loading from "../Loading";
 
 
 
@@ -26,11 +27,18 @@ const Fornecedores = () =>{
     const [fornecedores, setFornecedores]    = useState([])
     const { tasks } = useAxiosGet('/fornecedores')
     const [editando, setEditando] = useState({ edit: false, id: null })
+    const [carregando, setCarregando] = useState(true)
 
     useEffect( () => {
            if (!tasks) return 
         setFornecedores(tasks)  
     }, [tasks])
+
+    useEffect(() => {
+        if (fornecedores.length > 0) {
+            setCarregando(false);
+        }
+    }, [fornecedores])
 
     const adicionarFornecedor = async () => {
         if (nome === "" || descricao=== "" || email=== null ||
@@ -157,14 +165,14 @@ const Fornecedores = () =>{
                 </div>
             </div>
         </div>
-        <CadastrarFornecedores nome={nome} setNome={setNome} descricao={descricao} setDescricao={setDescricao} cidade={cidade} 
-        setCidade={setCidade} endereco={endereco} setEndereco={setEndereco} bairro={bairro} setBairro={setBairro} numero={numero}
-        setNumero={setNumero} email={email} setEmail={setEmail} telefone={telefone} setTelefone={setTelefone}
-        editar={editarFornecedor} adicionarFornecedor={adicionarFornecedor} salvar={salvar} cancelar={cancelar} editando={editando}/>
-      
-         {fornecedores.map((fornecedor) => <CardFornecedor key={fornecedor.id} fornecedor={fornecedor}
-          editarFornecedor={editarFornecedor} excluirFornecedor={excluirFornecedor} />)} 
-        
+            <CadastrarFornecedores nome={nome} setNome={setNome} descricao={descricao} setDescricao={setDescricao} cidade={cidade} 
+            setCidade={setCidade} endereco={endereco} setEndereco={setEndereco} bairro={bairro} setBairro={setBairro} numero={numero}
+            setNumero={setNumero} email={email} setEmail={setEmail} telefone={telefone} setTelefone={setTelefone}
+            editar={editarFornecedor} adicionarFornecedor={adicionarFornecedor} salvar={salvar} cancelar={cancelar} editando={editando}/>
+            {carregando ? <> <Loading/> </> : <>
+                {fornecedores.map((fornecedor) => <CardFornecedor key={fornecedor.id} fornecedor={fornecedor}
+                editarFornecedor={editarFornecedor} excluirFornecedor={excluirFornecedor} />)} 
+                </>}
         
         </>
     )

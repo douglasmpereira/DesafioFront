@@ -4,10 +4,12 @@ import useAxiosGet from "../../Componentes/hooks/useAxiosGet";
 import TabelaItens from "../../Componentes/TabelaItens";
 import { RiLogoutBoxFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Loading from "../../Componentes/Loading";
 
 
 const DetalhesPedido = () => {
 
+    const [carregando, setCarregando] = useState(true)
     const [pedidosItens, setPedidosItens] = useState([])
     const { tasks } = useAxiosGet('/pedidosItens')
 
@@ -16,8 +18,14 @@ const DetalhesPedido = () => {
     useEffect(() => {
         if (!tasks) return
         setPedidosItens(tasks.filter((filtrados)=> filtrados.pedido.id == idPedido))
+        
     }, [tasks])
 
+    useEffect(() => {
+        if (pedidosItens.length > 0) {
+            setCarregando(false);
+        }
+    }, [pedidosItens])
     
     return(
         <>
@@ -26,7 +34,7 @@ const DetalhesPedido = () => {
             <div className="container text-end">
                 <div className="row">
                     <div className="col">
-                        <Link to={"/telaAcesso"}>
+                        <Link to={"/pedidos"}>
                         <button className="btnBack mb-5">
                             <RiLogoutBoxFill/>
                             Voltar
@@ -34,9 +42,11 @@ const DetalhesPedido = () => {
                         </Link>
                     </div>
                 </div>
-        </div>
-            <TabelaItens pedidosItens={pedidosItens} />
-        </>
+            </div>
+                {carregando ? (<Loading/>) : (
+                      <TabelaItens pedidosItens={pedidosItens} />
+                 )}   
+            </>
     )
 }
 export default DetalhesPedido;
