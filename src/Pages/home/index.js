@@ -4,8 +4,31 @@ import "./styles.css";
 import { FaStore } from "react-icons/fa";
 import desconto from "../../imagens/desconto.PNG"
 import CardItem from "../../Componentes/CardItem";
+import { RiLogoutBoxFill } from "react-icons/ri";   
+import { Link } from "react-router-dom";
+import Loading from "../../Componentes/Loading";
+import useAxiosGet from "../../Componentes/hooks/useAxiosGet";
+import { useEffect, useState } from "react";
 
 const Home = () => {
+
+  const { tasks } = useAxiosGet('/produtos')
+  const [produtos, setProdutos] = useState([])
+  const [carregando, setCarregando] = useState("")
+
+  useEffect(() => {
+    if (!tasks) return
+    setProdutos(tasks)
+   // setIdProduto(tasks.length)
+  }, [tasks])
+
+  useEffect(() => {
+    if (produtos.length > 0) {
+        setCarregando(false);
+    }
+  }, [produtos])
+
+
   return (
     <>
       <div className="header">
@@ -29,34 +52,17 @@ const Home = () => {
       <img src={desconto} alt="garoto vibrando por ter ganhado um jogo" 
            
            width="100%"
-           height="180px"
+           height="290px"
            />
            <div className="mt-2 ms-3">
-            <p>Nossos Produtos</p>
+            <h2>Nossos Produtos</h2>
            </div>
       <div className="container mb-4">
         <div className="body mt-4">
           <div className="row">
-            <div className="col-md-2">
-              <CardItem/>
-            </div>
-            <div className="col-md-2">
-              <CardItem/>
-            </div>
-            <div className="col-md-2">
-              <CardItem/>
-            </div>
-            <div className="col-md-2">
-              <CardItem/>
-            </div>
-            <div className="col-md-2">
-              <CardItem/>
-            </div>
-            <div className="col-md-2">
-              <CardItem/>
-            </div>
-            
-           
+          {carregando ? <> <Loading/> </> : <>
+          {produtos.map((produto) => <CardItem key={produto.id} produto={produto} />)} 
+          </>}
           </div>
         </div>
       </div>

@@ -17,8 +17,8 @@ root.render(
    
     <Rotas/>
 
-    <div className="footer py-3 fixed-bottom">
-      <div className="container">
+    <div className="footer py-3  ">
+      <div className="container ">
             <div className="row ">
               <div className="col d-flex justify-content-start ">
                 <a href="">

@@ -59,7 +59,7 @@ const Produto = () => {
     }
 
     const editarProduto = (produto) => {
-        setEditando({ edit: true, idProduto: produto.idProduto })
+        setEditando({ edit: true, id: produto.id})
         setNome(produto.nome)
         setUrl(produto.url)
         setPrecoUnit(produto.precoUnit)
@@ -86,9 +86,6 @@ const Produto = () => {
         setFornecedor({"id": ""  })
     }
 
-    
-
-    
     const salvar = async () => {
         const produtoEditado = {
 
@@ -101,7 +98,7 @@ const Produto = () => {
         }
 
         const { data } = await api.put(`/produtos/${editando.id}`, produtoEditado)
-        //console.log( editando.idProduto)
+        
         const produtoseditados = produtos.map(produto => {
             console.log(produto.id, data.id)
             if (produto.id === editando.id) {
@@ -113,8 +110,9 @@ const Produto = () => {
             }
             return produto
         })
+        alert("PRODUTO EDITADO COM SUCESSO!")
         
-        console.log("depois de produtos editads")
+        console.log("depois de produtos editados")
         setProdutos(produtoseditados)
         setEditando({ edit: false, id: null })
         setNome("")

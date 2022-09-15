@@ -37,9 +37,9 @@ const CardPedidos = ({pedido, excluirPedido, pedidosItens}) => {
                         <td className="text-center">{pedido.dataHora} </td>
                         <td className="text-center"> {pedido.notaFiscal}</td>
                         <td className="text-center"> {pedido.transportadora.nome} </td>
-                        <td className="text-center"> {pedido.frete} </td>
-                        <td className="text-center"> {pedido.desconto} </td>
-                        <td className="text-center"> {pedido.valorTotal} </td>
+                        <td className="text-center">R$ {pedido.frete},00 </td>
+                        <td className="text-center">R$ {pedido.desconto},00 </td>
+                        <td className="text-center">R$ {pedido.valorTotal},00 </td>
                       </tr>
                     </tbody>
                   </table>

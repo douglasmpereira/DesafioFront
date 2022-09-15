@@ -36,7 +36,7 @@ const Pedidos = () => {
 
     return(
         <>
-        <h2 className="mt-3 text-center">PEDIDOS ENCONTRADOS NO SISTEMA</h2>
+        <h2 className="mt-3 text-center">PEDIDOS NO SISTEMA</h2>
         <div className="container text-end">
             <div className="row">
                 <div className="col">
@@ -49,9 +49,11 @@ const Pedidos = () => {
                 </div>
             </div>
         </div>
+        <div className="mb-4">
         {carregando ? <> <Loading/> </> : <>
             {pedidos.map((pedido) => <CardPedidos key={pedido.id} pedido={pedido} excluirPedido={excluirPedido} />)} 
         </>}
+        </div>
             </>
     )
 }

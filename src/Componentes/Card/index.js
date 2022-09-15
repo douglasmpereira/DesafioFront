@@ -6,11 +6,12 @@ import useAxiosGet from "../hooks/useAxiosGet";
 const Card = ({ produto, editarProduto, excluirProduto }) => {
 
   const [fornecedor, setFornecedor] = useState("")
-  const { tasks } = useAxiosGet(`/produtos/${produto.fornecedor.id}`)
+  const { tasks } = useAxiosGet(`/fornecedores/${produto.fornecedor}`)
 
   useEffect(() => {
     if (!tasks) return
     setFornecedor(tasks)
+    console.log("fornecedor", tasks)
 }, [tasks])
 
   return (

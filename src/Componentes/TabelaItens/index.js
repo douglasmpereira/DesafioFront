@@ -24,7 +24,7 @@ const TabelaItens = ({pedidosItens}) => {
                         <td className="text-center">{item.produto.nome} </td>
                         <td className="text-center"> {item.produto.precoUnit}</td>
                         <td className="text-center"> {item.quantidade} </td>
-                        <td className="text-center"> {item.subTotal} </td>
+                        <td className="text-center">R$ {item.subTotal} ,00 </td>
                       </tr>
                     </tbody>
                     ))}

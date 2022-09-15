@@ -135,6 +135,7 @@ const Fornecedores = () =>{
             }
             return fornecedor
         })
+        alert("FORNECEDOR EDITADO COM SUCESSO!")
 
         console.log("depois de produtos editads")
         setFornecedores(fornecedoreseditados)
@@ -152,7 +153,7 @@ const Fornecedores = () =>{
 
     return (
         <>
-        <h2 className="mt-3 text-center">Cadastre ou edite um fornecedor</h2>
+        <h2 className="mt-3 text-center">CADASTRE OU ALTERE UM FORNECEDOR</h2>
         <div className="container text-end">
             <div className="row">
                 <div className="col">
@@ -165,6 +166,7 @@ const Fornecedores = () =>{
                 </div>
             </div>
         </div>
+        <div className="mb-4">
             <CadastrarFornecedores nome={nome} setNome={setNome} descricao={descricao} setDescricao={setDescricao} cidade={cidade} 
             setCidade={setCidade} endereco={endereco} setEndereco={setEndereco} bairro={bairro} setBairro={setBairro} numero={numero}
             setNumero={setNumero} email={email} setEmail={setEmail} telefone={telefone} setTelefone={setTelefone}
@@ -173,7 +175,7 @@ const Fornecedores = () =>{
                 {fornecedores.map((fornecedor) => <CardFornecedor key={fornecedor.id} fornecedor={fornecedor}
                 editarFornecedor={editarFornecedor} excluirFornecedor={excluirFornecedor} />)} 
                 </>}
-        
+        </div>
         </>
     )
 }

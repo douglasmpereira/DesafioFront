@@ -22,7 +22,7 @@ const TelaAcesso = () =>{
     return(
         <>
          <Header/>
-        <div className="container ">
+        <div className="container contAcesso ">
             <div className="row rowNav">
                 <div className="col-md-3 ">
                     <CardAcessos imagem={entrarProdutos} nome="Produtos" link="/user" />

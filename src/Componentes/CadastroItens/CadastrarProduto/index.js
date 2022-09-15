@@ -20,7 +20,7 @@ const CadastrarProdutos = ({
   cancelar,
   salvar
 }) => {
-  const { tasks } = useAxiosGet('/produtos')
+  const { tasks } = useAxiosGet('/fornecedores')
   const [fornecedores, setFornecedores] = useState([])
 
   useEffect(() => {

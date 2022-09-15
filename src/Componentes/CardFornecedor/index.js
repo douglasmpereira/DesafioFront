@@ -32,7 +32,7 @@ const CardFornecedor = ({ fornecedor, editarFornecedor, excluirFornecedor}) => {
                         <td className="text-center"> {fornecedor.telefone.ddd} {fornecedor.telefone.telefone}</td>
                         <td className="text-center"> {fornecedor.email.nomeEmail} </td>
                         <td className="text-center">
-                          {fornecedor.cidade} {fornecedor.bairro} {fornecedor.endereco} {fornecedor.numero}
+                        {fornecedor.endereco}, {fornecedor.bairro}, {fornecedor.cidade}- N°{fornecedor.numero}
                         </td>
                       </tr>
                     </tbody>
