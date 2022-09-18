@@ -13,7 +13,7 @@ function CardItem({produto}) {
       <Card.Body>
         <Card.Title>{produto.nome}</Card.Title>
         <Card.Text>
-         R$ {produto.precoUnit}
+         R$ {produto.precoUnit},00
         </Card.Text>
         <Button variant="primary">Comprar</Button>
       </Card.Body>

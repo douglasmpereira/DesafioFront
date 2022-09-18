@@ -29,8 +29,6 @@ const CadastrarProdutos = ({
    // setIdProduto(tasks.length)
 }, [tasks])
 
-  console.log(fornecedores)
-
   return (
     <div className="container">
       <form className="row g-3 mt-2">
@@ -59,7 +57,7 @@ const CadastrarProdutos = ({
             <select
                 className="caixa form-select" required
                 value={fornecedor.id}
-                onChange={(e)=>{setFornecedor(e.target.value)}}>
+                onChange={(e)=>{setFornecedor({id: e.target.value})}}>
                 <option className = "boxselect" value="" disabled selected>Fornecedor</option>
                 {fornecedores.map(person => <option  key={person.id} className = "boxselect" value={person.id}>{person.nome}</option>)}
               </select>

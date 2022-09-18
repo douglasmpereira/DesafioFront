@@ -35,7 +35,19 @@ const Login = () => {
 
   return (
     <>
-     <Header/>
+     <div className="header">
+        <Navbar className="navbar ms-3">
+          <Navbar.Brand href="/home">
+            <FaStore className="iconeloja" size={35} />
+          </Navbar.Brand>
+          <Nav className="me-auto ">
+            <Nav.Link className="home" href="/home">
+              Home
+            </Nav.Link>
+          </Nav>
+          
+        </Navbar>
+      </div>
       <div className="container contLogin">
         <div className="body mt-4">
           <div className="row">

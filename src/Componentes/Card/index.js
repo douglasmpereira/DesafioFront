@@ -3,15 +3,14 @@ import { useEffect } from "react";
 import api from "../service/api";
 import useAxiosGet from "../hooks/useAxiosGet";
 
-const Card = ({ produto, editarProduto, excluirProduto }) => {
+const Card = ({ produto, editarProduto, excluirProduto, idProduto }) => {
 
   const [fornecedor, setFornecedor] = useState("")
-  const { tasks } = useAxiosGet(`/fornecedores/${produto.fornecedor}`)
+  const { tasks } = useAxiosGet(`/fornecedores/${produto.fornecedor.id}`)
 
   useEffect(() => {
     if (!tasks) return
     setFornecedor(tasks)
-    console.log("fornecedor", tasks)
 }, [tasks])
 
   return (
@@ -20,9 +19,15 @@ const Card = ({ produto, editarProduto, excluirProduto }) => {
         <div className="card-header d-flex align-items-center">
           <div className="card col-12 mb-2 ">
             <div className="card-header d-flex align-items-center mt-2">
+              {!produto.id ? <>
+                <p>
+                 Produto: {produto.nome} - Código: {idProduto}
+              </p>
+              </>:<>
               <p>
                  Produto: {produto.nome} - Código: {produto.id}
               </p>
+              </>}
             </div>
 
             <div className="card-body">

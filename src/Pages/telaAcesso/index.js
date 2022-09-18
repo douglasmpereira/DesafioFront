@@ -16,7 +16,6 @@ const TelaAcesso = () =>{
 
     const { usuario } = useContext(AuthContext);
     useEffect(() => {
-      console.log(usuario);
     }, [usuario]);
 
     return(

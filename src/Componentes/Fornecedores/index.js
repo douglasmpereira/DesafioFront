@@ -22,12 +22,12 @@ const Fornecedores = () =>{
     const [endereco, setEndereco] = useState("")
     const [bairro, setBairro] = useState("")
     const [numero, setNumero] = useState("")
-    const [email, setEmail] = useState({"email": " "})
-    const [telefone, setTelefone] = useState({"ddd": "", "telefone": ""})
     const [fornecedores, setFornecedores]    = useState([])
     const { tasks } = useAxiosGet('/fornecedores')
     const [editando, setEditando] = useState({ edit: false, id: null })
     const [carregando, setCarregando] = useState(true)
+    const [adicionarContatos, setAdicionarContatos] = useState(false)
+
 
     useEffect( () => {
            if (!tasks) return 
@@ -41,8 +41,7 @@ const Fornecedores = () =>{
     }, [fornecedores])
 
     const adicionarFornecedor = async () => {
-        if (nome === "" || descricao=== "" || email=== null ||
-            telefone === null || cidade=== "" || bairro === "" ||
+        if (nome === "" || descricao=== "" || cidade=== "" || bairro === "" ||
             endereco === "" || numero === "" ) {
             return alert("PREENCHA TODOS OS CAMPOS")
         }
@@ -51,16 +50,16 @@ const Fornecedores = () =>{
 
             nome: nome,
             descricao: descricao,
-            email: email,
-            telefone: telefone,
             cidade: cidade,
             bairro: bairro,
             endereco: endereco,
             numero: numero
 
         }
+        const { data } = await api.post('/fornecedores/adicionar', novoFornecedor)
         alert("FORNECEDOR CADASTRADO COM SUCESSO!")
-        const { data } = await api.post('/fornecedores', novoFornecedor)
+
+        setAdicionarContatos(true);
 
         setFornecedores([
             ...fornecedores,
@@ -70,8 +69,6 @@ const Fornecedores = () =>{
         
         setNome("")
         setDescricao("")
-        setEmail({"nomeEmail": ""})
-        setTelefone({"ddd": "", "telefone":""})
         setCidade("")
         setBairro("")
         setEndereco("")
@@ -79,13 +76,12 @@ const Fornecedores = () =>{
     }
 
     const editarFornecedor = (fornecedor) => {
-        console.log("nome",fornecedor.nome)
-        console.log("id",fornecedor.id)
+
+        localStorage.setItem("idFornecedor", fornecedor.id)
+    
         setEditando({ edit: true, id: fornecedor.id })
         setNome(fornecedor.nome)
         setDescricao(fornecedor.descricao)
-        setEmail(fornecedor.email)
-        setTelefone(fornecedor.telefone)
         setCidade(fornecedor.cidade)
         setBairro(fornecedor.bairro)
         setEndereco(fornecedor.endereco)
@@ -101,8 +97,6 @@ const Fornecedores = () =>{
         setEditando({ edit: false, id: null })
         setNome("")
         setDescricao("")
-        setEmail({"nomeEmail": ""})
-        setTelefone({"ddd": "", "telefone":""})
         setCidade("")
         setBairro("")
         setEndereco("")
@@ -113,8 +107,6 @@ const Fornecedores = () =>{
             
             nome: nome,
             descricao: descricao,
-            email: email,
-            telefone: telefone,
             cidade: cidade,
             bairro: bairro,
             endereco: endereco,
@@ -142,8 +134,6 @@ const Fornecedores = () =>{
         setEditando({ edit: false, id: null })
         setNome("")
         setDescricao("")
-        setEmail({"email": ""})
-        setTelefone({"ddd": "", "telefone":""})
         setCidade("")
         setBairro("")
         setEndereco("")
@@ -169,7 +159,7 @@ const Fornecedores = () =>{
         <div className="mb-4">
             <CadastrarFornecedores nome={nome} setNome={setNome} descricao={descricao} setDescricao={setDescricao} cidade={cidade} 
             setCidade={setCidade} endereco={endereco} setEndereco={setEndereco} bairro={bairro} setBairro={setBairro} numero={numero}
-            setNumero={setNumero} email={email} setEmail={setEmail} telefone={telefone} setTelefone={setTelefone}
+            setNumero={setNumero} adicionarContatos={adicionarContatos}
             editar={editarFornecedor} adicionarFornecedor={adicionarFornecedor} salvar={salvar} cancelar={cancelar} editando={editando}/>
             {carregando ? <> <Loading/> </> : <>
                 {fornecedores.map((fornecedor) => <CardFornecedor key={fornecedor.id} fornecedor={fornecedor}

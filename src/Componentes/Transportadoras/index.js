@@ -31,7 +31,11 @@ const Transportadoras = () => {
     }, [transportadoras])
 
     const adicionarTransportadora = async () => {
-        if (nome === "" || telefone=== "" || precoPorKm=== "" ) 
+        console.log("nome", nome)
+        console.log("preco", precoPorKm)
+        console.log("telefone", telefone)
+
+        if (nome === "" || telefone=== "" || precoPorKm === "" ) 
         {
             return alert("PREENCHA TODOS OS CAMPOS")
         }
@@ -39,12 +43,13 @@ const Transportadoras = () => {
         const novaTransportadora = {
 
             nome: nome,
-            telefone: telefone,
-            precoPorkm: precoPorKm
+            precoPorKm: precoPorKm,
+            telefone: telefone
 
         }
+        console.log("nova transportadora", novaTransportadora)
+        const { data } = await api.post('/transportadoras/adicionar', novaTransportadora)
         alert("TRANSPORTADORA CADASTRADA COM SUCESSO!")
-        const { data } = await api.post('/transportadoras', novaTransportadora)
 
         setTransportadoras([
             ...transportadoras,
@@ -126,10 +131,12 @@ const Transportadoras = () => {
             <CadastrarTransportadoras nome={nome} setNome={setNome} telefone={telefone} setTelefone={setTelefone}
             precoPorKm={precoPorKm} setPrecoPorKm={setPrecoPorKm}  editar={editarTransportadora} 
             adicionarTransportadora={adicionarTransportadora} salvar={salvar} cancelar={cancelar} editando={editando}/>
+           <div className="mb-5">
             {carregando ? <> <Loading/> </> : <>
                 {transportadoras.map((transportadora) => <CardTransportadora key={transportadora.id} transportadora={transportadora} 
                 editarTransportadora={editarTransportadora} excluirTransportadora={excluirTransportadora} />)}
             </>}
+            </div>
 
         </>
     )

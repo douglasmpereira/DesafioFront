@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import "./styles.css"
+
 const CadastrarFornecedores = ({
     nome,
     setNome,
@@ -11,10 +14,6 @@ const CadastrarFornecedores = ({
     setBairro,
     numero,
     setNumero,
-    email,
-    setEmail,
-    telefone,
-    setTelefone,
     adicionarFornecedor,
     editando,
     edit,
@@ -22,10 +21,13 @@ const CadastrarFornecedores = ({
     salvar,
    
   }) => {
+
+    
+
     return (
       <div className="container">
         <form className="row g-3 mt-2">
-          <div className="col-md-3">
+          <div className="col-md-5">
             <label className="form-label">Nome</label>
             <input
               type="text"
@@ -35,7 +37,7 @@ const CadastrarFornecedores = ({
               onChange={(e) => setNome(e.target.value)}
             />
           </div>
-          <div className="col-md-3">
+          <div className="col-md-5">
             <label className="form-label">Descrição</label>
             <input
               type="text"
@@ -45,7 +47,18 @@ const CadastrarFornecedores = ({
               onChange={(e) => setDescricao(e.target.value)}
             />
           </div>
-          <div className="col-md-3">
+          <div className="col-md-2">
+            {editando.edit? <>
+                <label className="form-label">Editar Contatos</label><br/>
+                <Link to="/contatos">
+                <button className="btn-editFornecedor"> Contatos </button>
+                </Link>
+              
+              </> :<></> 
+            }
+          </div>
+          
+          {/* <div className="col-md-3">
             <label className="form-label">Email</label>
             <input
               type="text"
@@ -74,7 +87,7 @@ const CadastrarFornecedores = ({
               value={telefone.telefone}
               onChange={(e) => setTelefone({ telefone: e.target.value })}
             />
-          </div>
+          </div> */}
           <div className="col-md-3">
             <label className="form-label">Cidade</label>
             <input

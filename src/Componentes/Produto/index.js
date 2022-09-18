@@ -16,6 +16,7 @@ const Produto = () => {
     const [qtdEstoque, setQtdEstoque] = useState("")
     const [fornecedor, setFornecedor] = useState({"id": ""})
     const [editando, setEditando] = useState({ edit: false, id: null })
+    const [idProduto, setIdProduto] = useState("")
     const { tasks } = useAxiosGet('/produtos')
     const [produtos, setProdutos] = useState([])
     const [carregando, setCarregando] = useState(true)
@@ -23,27 +24,32 @@ const Produto = () => {
     useEffect(() => {
         if (!tasks) return
         setProdutos(tasks)
-       // setIdProduto(tasks.length)
+        //o incremento do setProduto deve ser alterado para + 1 que seria o id do novo produto cadastrado,
+         //esta em +3 devido a um erro no inicio da geração dos produtos no bd
+         //o correto seria setIdProduto(tasks.length)
+        
+       setIdProduto(tasks.length+3)
     }, [tasks])
 
     const adicionarProduto = async () => {
+
         if (nome === "" || precoUnit === "" || descricao === "" ||
-         qtdEstoque === "" || url === " " || fornecedor ===" " ) {
+         qtdEstoque === "" || url === " " || fornecedor.id === ''  ) {
             return alert("PREENCHA TODOS OS CAMPOS")
         }
 
         const novoProduto = {
-
+   
             nome: nome,
             url: url,
             precoUnit: precoUnit,
             descricao: descricao,
             qtdEstoque: qtdEstoque,
             fornecedor: fornecedor
-
         }
+        console.log("novo produto", novoProduto)
         alert("PRODUTO CADASTRADO COM SUCESSO!")
-        const { data } = await api.post('/produtos', novoProduto)
+        const { data } = await api.post('/produtos/adicionar', novoProduto)
 
         setProdutos([
             ...produtos,
@@ -152,7 +158,7 @@ const Produto = () => {
                 setDescricao={setDescricao} qtdEstoque={qtdEstoque} setQtdEstoque={setQtdEstoque} fornecedor={fornecedor}
                 setFornecedor={setFornecedor} editando={editando}/>
              {carregando ? <> <Loading/> </> : <>
-                 {produtos.map((produto) => <Card key={produto.idProduto} produto={produto} editarProduto={editarProduto} excluirProduto={excluirProduto} />)}
+                 {produtos.map((produto) => <Card key={produto.idProduto} idProduto={idProduto} produto={produto} editarProduto={editarProduto} excluirProduto={excluirProduto} />)}
             </>}
         </div>
     );

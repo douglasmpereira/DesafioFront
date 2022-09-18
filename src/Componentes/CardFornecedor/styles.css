@@ -3,3 +3,13 @@
     box-shadow : 10px 10px 5px #0f7ae6;
     
 }
+.btn-contatoForn{
+    width: 35px;
+    height: 35px;
+    background-color: white;
+    border-radius: 50px;
+}.btn-contatoForn:hover{
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.8);
+    color: white;
+    background-color: #0f7ae6;
+}

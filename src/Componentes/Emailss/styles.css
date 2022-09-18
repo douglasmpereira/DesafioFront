@@ -1,0 +1,17 @@
+.btn-adcEmail{
+    /* background-color: #0f7ae6;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    box-shadow: 5px 5px 2px rgb(106, 105, 105);
+    font-weight: bold;
+    height: 60%;
+    width: 100%;
+    font-size: 13; */
+
+    color: #0f7ae6;
+}
+.btn-adcEmail:hover{
+    border-radius: 100%;color: black;
+    
+}

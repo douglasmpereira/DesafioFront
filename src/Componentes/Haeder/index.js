@@ -8,7 +8,6 @@ const Header = () => {
 
   const { usuario } = useContext(AuthContext);
     useEffect(() => {
-      console.log(usuario);
     }, [usuario]);
 
 

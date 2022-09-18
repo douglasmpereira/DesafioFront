@@ -1,4 +1,8 @@
-import "./styles.css"
+import "./styles.css";
+import { Link } from "react-router-dom";
+import {BsTelephoneFill} from "react-icons/bs"; 
+
+
 const CardFornecedor = ({ fornecedor, editarFornecedor, excluirFornecedor}) => {
   
   // , 
@@ -20,19 +24,23 @@ const CardFornecedor = ({ fornecedor, editarFornecedor, excluirFornecedor}) => {
                       <tr>
                         <th className="text-center">Nome</th>
                         <th className="text-center">Descrição</th>
-                        <th className="text-center">Telefone</th>
-                        <th className="text-center">E-mail</th>
                         <th className="text-center">Endereço Completo</th>
+                        <th className="text-center">Contatos</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <td className="text-center">{fornecedor.nome}</td>
                         <td className="text-center">{fornecedor.descricao} </td>
-                        <td className="text-center"> {fornecedor.telefone.ddd} {fornecedor.telefone.telefone}</td>
-                        <td className="text-center"> {fornecedor.email.nomeEmail} </td>
                         <td className="text-center">
                         {fornecedor.endereco}, {fornecedor.bairro}, {fornecedor.cidade}- N°{fornecedor.numero}
+                        </td>
+                        <td className="text-center"> 
+                           <Link to="/contatos">
+                            <button className="btn-contatoForn">
+                              <BsTelephoneFill size={20}/>
+                            </button>
+                          </Link>
                         </td>
                       </tr>
                     </tbody>

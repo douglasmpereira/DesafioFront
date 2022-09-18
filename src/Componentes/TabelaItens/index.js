@@ -22,9 +22,9 @@ const TabelaItens = ({pedidosItens}) => {
                       <tr>
                         <td className="text-center"><img src={item.produto.url} alt="" width="60px" /></td>
                         <td className="text-center">{item.produto.nome} </td>
-                        <td className="text-center"> {item.produto.precoUnit}</td>
+                        <td className="text-center">R$ {item.produto.precoUnit},00</td>
                         <td className="text-center"> {item.quantidade} </td>
-                        <td className="text-center">R$ {item.subTotal} ,00 </td>
+                        <td className="text-center">R$ {item.subTotal},00 </td>
                       </tr>
                     </tbody>
                     ))}
