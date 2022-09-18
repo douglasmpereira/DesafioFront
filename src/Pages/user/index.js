@@ -7,6 +7,7 @@ import { useContext, useEffect } from "react";
 import { AuthContext } from "../../contexts/auth";
 import Header from "../../Componentes/Haeder";
 
+ 
 const User = () => {
   
   const { usuario } = useContext(AuthContext);
